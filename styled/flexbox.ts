@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+    position: relative;
     display: ${ ({ flex }: { 
         flex?: boolean, 
         between?: boolean, 

@@ -5,3 +5,7 @@ export const Navigation = styled.nav`
     padding: 20px 0;
     border-bottom: 1px solid ${ ({ dark }) => dark ? "hsl(207, 26%, 17%)" : "#e9e9e9"} ;
 `
+
+export const Section = styled.div`
+    
+`
