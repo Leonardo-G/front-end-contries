@@ -23,7 +23,8 @@ export const Nav: FC = () => {
                     <Box 
                         flex
                         pointer
-                        onClick={ () => setIsDark( !isDark ) }    
+                        onClick={ () => setIsDark( !isDark ) }  
+                        colCenter  
                     >
                         <FontAwesomeIcon icon={ isDark ? faMoonSolid : faMoon }/> 
                         <Text size={ 16 } margin={ "0 0 0 10px" }>Dark Mode</Text>

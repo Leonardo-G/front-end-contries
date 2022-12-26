@@ -1,10 +1,10 @@
 import React, { FC, useContext } from 'react';
 
 import { ContainerImage } from '../image/ContainerImage';
+import { UIContext } from '../../context/UI/UIContext';
 
 import { CountryBox, CountryInfo } from '../../styled/components/country';
 import { Text } from '../../styled/text';
-import { UIContext } from '../../context/UI/UIContext';
 
 interface Props {
     country: any;
