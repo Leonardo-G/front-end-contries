@@ -1,7 +1,11 @@
 import Head from 'next/head';
-import React, { FC, ReactNode, useState } from 'react'
-import { Theme } from '../../styled/globals';
+
+import React, { FC, ReactNode, useContext } from 'react'
+
 import { Nav } from '../nav/Nav';
+import { UIContext } from '../../context/UI/UIContext';
+
+import { Theme } from '../../styled/globals';
 
 interface Props {
     title: string;
@@ -10,7 +14,7 @@ interface Props {
 
 export const LayoutPage: FC<Props> = ({ title, children }) => {
 
-    const [isDark, setIsDark] = useState(false);
+    const { isDark } = useContext( UIContext );
 
     return (
         <Theme dark={ isDark }>
@@ -18,7 +22,7 @@ export const LayoutPage: FC<Props> = ({ title, children }) => {
                 <title>{ title }</title>
             </Head>
             <header>
-                <Nav dark={ isDark } changeDark={ setIsDark }/>
+                <Nav />
             </header>
             <main>
                 { children }

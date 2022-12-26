@@ -1,17 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { ContainerImage } from '../image/ContainerImage';
 
 import { CountryBox, CountryInfo } from '../../styled/components/country';
 import { Text } from '../../styled/text';
+import { UIContext } from '../../context/UI/UIContext';
 
 interface Props {
     country: any;
 }
 
 export const Country: FC<Props> = ({ country }) => {
+    
+    const { isDark } = useContext( UIContext );
+    
     return (
-        <CountryBox>
+        <CountryBox dark={ isDark }>
             <ContainerImage 
                 src={ country.flags.png }
                 height='180px'

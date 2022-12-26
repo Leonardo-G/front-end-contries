@@ -1,31 +1,31 @@
-import React, { Dispatch, FC } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
 import { faMoon as faMoonSolid } from '@fortawesome/free-solid-svg-icons';
+
+import { UIContext } from '../../context/UI/UIContext';
 
 import { Box } from '../../styled/flexbox';
 import { Container } from '../../styled/globals';
 import { Navigation } from '../../styled/sections';
 import { Text, Title } from '../../styled/text';
 
-interface Props {
-    dark?: boolean; 
-    changeDark: Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const Nav: FC<Props> = ({ dark, changeDark }) => {
+export const Nav: FC = () => {
+    
+    const { isDark, setIsDark } = useContext(UIContext);
+    
     return (
-        <Navigation dark={ dark }>
+        <Navigation dark={ isDark }>
             <Container>
                 <Box flex between adjust colCenter>
                     <Title size={ 22 }>Where in the world?</Title>
                     <Box 
                         flex
                         pointer
-                        onClick={ () => changeDark( isDark => !isDark ) }    
+                        onClick={ () => setIsDark( !isDark ) }    
                     >
-                        <FontAwesomeIcon icon={ dark ? faMoonSolid : faMoon }/> 
+                        <FontAwesomeIcon icon={ isDark ? faMoonSolid : faMoon }/> 
                         <Text size={ 16 } margin={ "0 0 0 10px" }>Dark Mode</Text>
                     </Box>
                 </Box>
