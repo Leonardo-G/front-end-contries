@@ -19,6 +19,7 @@ export const InputComponent = () => {
             colorBack={ isDark ? "hsl(209, 23%, 22%)" : "#fff" }
             minWidth="490px"
             borderRadius='6px'
+            shadow={`0px 2px 5px 4px ${ isDark ? "hsl(207, 26%, 17%)" : "#8585851f"}`}
         >
             <FontAwesomeIcon 
                 icon={ faSearch }

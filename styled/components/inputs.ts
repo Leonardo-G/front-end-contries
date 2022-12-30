@@ -6,4 +6,5 @@ export const Input = styled.input`
     border: none;
     padding: 10px 5px;
     color: ${ ({ dark }: { dark?: boolean }) => dark ? "#fff" : "#000" };
+    width: 100%;
 `

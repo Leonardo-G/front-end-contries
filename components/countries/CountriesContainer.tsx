@@ -1,11 +1,19 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
+
+import { UIContext } from '../../context/UI/UIContext';
 import { Country } from './Country';
 
+import { ICountryShort } from '../../interfaces/country';
+
+
 interface Props{
-    countries: any[];
+    countries: ICountryShort[];
 }
 
 export const CountriesContainer:FC<Props> = ({ countries }) => {
+    
+    const { isDark } = useContext( UIContext );
+
     return (
         <div
             style={{
@@ -18,7 +26,7 @@ export const CountriesContainer:FC<Props> = ({ countries }) => {
         >
             {
                 countries.map( c => (
-                    <Country key={ c.area } country={ c }/>
+                    <Country key={ c.name } country={ c } isDark={ isDark }/>
                 ))
             }
         </div>

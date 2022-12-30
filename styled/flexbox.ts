@@ -15,6 +15,7 @@ export const Box = styled.div`
         colGap?: number;
         minWidth?: string;
         borderRadius?: string;
+        shadow?: string;
     }) => flex ? "flex" : "normal" };
     width: ${ ({ adjust }) => adjust ? "100%" : "auto"};
     min-width: ${ ({ minWidth }) => minWidth ? minWidth : "auto"};
@@ -26,4 +27,5 @@ export const Box = styled.div`
     padding: ${ ({ padding }) => padding ? padding : "0px" };
     column-gap: ${ ({ colGap }) => colGap ? `${ colGap }px` : "0px" };
     border-radius: ${ ({ borderRadius }) => borderRadius ? borderRadius : "0px" };
+    box-shadow: ${ ({ shadow }) => shadow ? shadow : "none" };
 `
