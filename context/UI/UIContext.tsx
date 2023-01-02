@@ -5,7 +5,9 @@ import {
 
 export interface ContextProps {
     isDark: boolean;
-    setIsDark: Dispatch<React.SetStateAction<boolean>>
+    setIsDark: Dispatch<React.SetStateAction<boolean>>;
+    search: string;
+    setSearch: Dispatch<React.SetStateAction<string>>
 };
 
 export const UIContext = createContext({} as ContextProps);

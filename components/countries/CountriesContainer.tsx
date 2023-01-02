@@ -21,7 +21,7 @@ export const CountriesContainer:FC<Props> = ({ countries }) => {
                 gridTemplateColumns: "repeat(auto-fill, minmax(225px, 1fr))",
                 columnGap: "80px",
                 rowGap: "80px",
-                marginTop: "35px"
+                margin: "35px 0"
             }}
         >
             {

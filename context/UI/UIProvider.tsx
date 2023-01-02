@@ -9,11 +9,14 @@ interface Props {
 export const UIProvider: FC<Props> = ({ children }) => {
     
     const [isDark, setIsDark] = useState(false);
+    const [search, setSearch] = useState("");
 
     return (
         <UIContext.Provider value={{
             isDark,
-            setIsDark
+            search,
+            setIsDark,
+            setSearch
         }}>
             { children }
         </UIContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ChangeEvent, KeyboardEvent, KeyboardEventHandler, useContext, useState } from 'react';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,23 @@ import { Input } from '../../styled/components/inputs';
 
 export const InputComponent = () => {
     
-    const { isDark } = useContext( UIContext );
+    const { isDark, setSearch } = useContext( UIContext );
+    const [valueInput, setValueInput] = useState("");
+
+    const handleSearchValue = () => {
+        
+        setSearch( valueInput );
+    }
+
+    const handleChangeValue = ( e: ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement> ) => {
+        if ( ( e as KeyboardEvent<HTMLInputElement> ).key === "Enter" ){
+            
+            setSearch( valueInput );
+            return;
+        }
+        
+        setValueInput( (e as ChangeEvent<HTMLInputElement>).target.value )
+    }
     
     return (
         <Box 
@@ -24,11 +40,14 @@ export const InputComponent = () => {
             <FontAwesomeIcon 
                 icon={ faSearch }
                 size={ "lg" }
+                onClick={ handleSearchValue }
             />
             <Input 
                 type="text"
                 dark={ isDark }
                 placeholder="Search for a country..."
+                onChange={ handleChangeValue }
+                onKeyDown={ handleChangeValue }
             />
         </Box>
     )
