@@ -41,15 +41,18 @@ const Home: NextPage<Props> = ({ countries }) => {
   useEffect(() => {
 
     if ( search !== "" ){
+        setPage(1);
         const searchCountries = countries.filter( c => {
         const searchCountry = c.name.toLowerCase().search(search.toLocaleLowerCase().toString());
         
         return searchCountry >= 0;
       })
 
-      setCountries( searchCountries )
+      setCountries( searchCountries.filter( (c, idx) => idx >= 0 && idx <= 19 * page ) )
+      return;
     }
 
+    setCountries( countries.filter( (c, idx) => idx >= 0 && idx <= 19 * page ) )
   }, [ search ])
 
   return (
