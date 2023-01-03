@@ -5,10 +5,11 @@ import { CountriesContainer } from '../components/countries/CountriesContainer';
 import { LayoutPage } from '../components/layout/LayoutPage';
 import { ContainerInputs } from '../components/search/ContainerInputs';
 
-import { Container } from '../styled/globals';
 import { ICountry, ICountryShort } from '../interfaces/country';
 import { Barra } from '../components/UI/Barra';
 import { UIContext } from '../context/UI/UIContext';
+
+import { Container } from '../styled/globals';
 
 interface Props {
   countries: ICountryShort[];
@@ -24,6 +25,17 @@ const Home: NextPage<Props> = ({ countries }) => {
   }
 
   useEffect(() => {
+    const arrayRegion = ["America", "Africa", "Asia", "Europe", "Oceania"];
+    
+    if ( arrayRegion.includes(search) ){
+      const searchCountries = countries.filter( c => {
+        const searchCountry = c.region.includes(search);
+        return searchCountry && searchCountry;
+      })
+      setCountries( searchCountries.filter( (c, idx) => idx >= 0 && idx <= 19 * page ) );
+      return;
+    }
+
     if ( search !== "" ){
       const searchCountries = countries.filter( c => {
         const searchCountry = c.name.toLowerCase().search(search.toLocaleLowerCase().toString());
@@ -39,6 +51,18 @@ const Home: NextPage<Props> = ({ countries }) => {
   }, [ page ])
 
   useEffect(() => {
+
+    const arrayRegion = ["America", "Africa", "Asia", "Europe", "Oceania"];
+    
+    if ( arrayRegion.includes(search) ){
+      const searchCountries = countries.filter( c => {
+        const searchCountry = c.region.includes(search);
+        return searchCountry && searchCountry;
+      })
+      setPage(1)
+      setCountries( searchCountries.filter( (c, idx) => idx >= 0 && idx <= 19 * page ) );
+      return;
+    }
 
     if ( search !== "" ){
         setPage(1);
