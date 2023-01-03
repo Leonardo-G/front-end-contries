@@ -1,5 +1,5 @@
+import { GetStaticProps, NextPage } from 'next';
 import { useContext, useEffect, useState } from 'react';
-import { GetStaticProps, NextPage } from 'next'
 
 import { CountriesContainer } from '../components/countries/CountriesContainer';
 import { LayoutPage } from '../components/layout/LayoutPage';

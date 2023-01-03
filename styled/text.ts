@@ -6,10 +6,11 @@ export const Title = styled.h1`
 `
 
 export const Text = styled.p`
-    font-size: ${ ({ size }: { size?: number, margin?: string, weight?: number }) => size ? `${ size }px` : "14px" };
+    font-size: ${ ({ size }: { size?: number, margin?: string, weight?: number, dark?: boolean, color?: string }) => size ? `${ size }px` : "14px" };
     margin: ${ ({ margin }) => margin ? margin : "0" };
     font-weight: ${ ({ weight }) => weight ? weight : 300 };
     line-height: 1.8;
+    color ${ ({ color }) => color && color };
 
     .greyText{
         color: hsl(0, 0%, 52%);

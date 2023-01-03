@@ -14,7 +14,7 @@ const Select = styled.div`
     top: 110%;
     left: 0;
     width: 100%;
-    background: ${ ({ dark, shadow }: { dark?: boolean, shadow?: string }) => dark ? "hsl(0, 0%, 52%)" : "#fff" };
+    background: ${ ({ dark, shadow }: { dark?: boolean, shadow?: string }) => dark ? "hsl(209,23%,22%)" : "#fff" };
     padding: 15px 20px;
     display: flex;
     flex-direction: column;

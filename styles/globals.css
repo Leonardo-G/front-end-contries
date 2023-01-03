@@ -9,8 +9,12 @@ html{
     word-spacing: 2px;
 }
 
-p, h1, h2, h3, a, input, span{
+p, h1, h2, h3, a, input, span, a{
     font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
+}
+
+a{
+    text-decoration: none;
 }
