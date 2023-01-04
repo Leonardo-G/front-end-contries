@@ -6,6 +6,13 @@ export interface ICountryShort {
     capital: string[];
 }
 
+export interface ICountryMedium extends ICountryShort {
+    nativeName: string;
+    subregion: string;
+    curriences: string;
+    languages: string[];
+}
+
 export interface ICountry {
     name:         Name;
     tld:          string[];
@@ -24,7 +31,7 @@ export interface ICountry {
     subregion:    string;
     languages:    Languages;
     translations: { [key: string]: Translation };
-    latlng:       number[];
+    latlng:       number[];    
     landlocked:   boolean;
     area:         number;
     demonyms:     Demonyms;

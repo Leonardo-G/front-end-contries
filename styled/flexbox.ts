@@ -16,6 +16,7 @@ export const Box = styled.div`
         minWidth?: string;
         borderRadius?: string;
         shadow?: string;
+        inline?: boolean;
     }) => flex ? "flex" : "normal" };
     width: ${ ({ adjust }) => adjust ? "100%" : "auto"};
     min-width: ${ ({ minWidth }) => minWidth ? minWidth : "auto"};

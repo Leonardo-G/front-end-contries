@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { LayoutPage } from '../../components/layout/LayoutPage'
 import { ICountry, ICountryShort } from '../../interfaces/country'
 import { Container } from '../../styled/globals';
+import { Button } from '../../components/UI/Button';
+import { UIContext } from '../../context/UI/UIContext';
+import { Box } from '../../styled/flexbox';
+import { ContainerImage } from '../../components/image/ContainerImage';
+import { Text, Title } from '../../styled/text';
 
 interface Props {
     country: ICountryShort;
 }
 
 const CountryPage: NextPage<Props> = ({ country }) => {
-    console.log(country)
+    
+    const { isDark } = useContext( UIContext );
+
     return (
         <LayoutPage title={` Country | ${country.name} `}>
             <Container>
-                
+                <Button isDark={ isDark }/>
+                <Box 
+                    flex
+                >
+                    <ContainerImage 
+                        src={ country.img }
+                        height={ "400px" }
+                    />
+                    <Box minWidth='50%'>
+                        <Title size={ 28 }>{ country.name }</Title>
+                        <Box>
+                            <Box>
+                                <Text margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "#000" }>
+                                    Native Name: <span className='greyText'>{ country.population }</span>
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
             </Container>
         </LayoutPage>
     )
