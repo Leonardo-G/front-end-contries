@@ -17,7 +17,9 @@ export const Box = styled.div`
         borderRadius?: string;
         shadow?: string;
         inline?: boolean;
+        flexAuto?: boolean;
     }) => flex ? "flex" : "normal" };
+    flex: ${ ({ flexAuto }) => flexAuto ? 1 : "normal" };
     width: ${ ({ adjust }) => adjust ? "100%" : "auto"};
     min-width: ${ ({ minWidth }) => minWidth ? minWidth : "auto"};
     justify-content: ${ ({ between, around }) => between ? "space-between" : around ? "space-around" : "normal" };

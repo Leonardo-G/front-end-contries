@@ -7,10 +7,11 @@ export interface ICountryShort {
 }
 
 export interface ICountryMedium extends ICountryShort {
-    nativeName: string;
+    nativeName: NativeName;
     subregion: string;
-    curriences: string;
-    languages: string[];
+    curriences: { [key: string]: Currency };
+    languages: Languages;
+    tld: string[];
 }
 
 export interface ICountry {
@@ -107,6 +108,7 @@ export interface NativeName {
     fra?: Translation;
     dan?: Translation;
     fao?: Translation;
+    sqi?: Translation;
 }
 
 export interface Translation {
