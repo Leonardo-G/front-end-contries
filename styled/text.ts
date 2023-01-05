@@ -15,4 +15,10 @@ export const Text = styled.p`
     .greyText{
         color: hsl(0, 0%, 52%);
     }
+
+    @media (max-width: 480px){
+        .responsive{
+            display: block;
+        }
+    }
 `

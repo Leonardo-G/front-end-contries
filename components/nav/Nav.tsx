@@ -10,6 +10,19 @@ import { Box } from '../../styled/flexbox';
 import { Container } from '../../styled/globals';
 import { Navigation } from '../../styled/sections';
 import { Text, Title } from '../../styled/text';
+import styled from 'styled-components';
+
+const NavPage = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 620px){
+        row-gap: 15px;
+        flex-direction: column;
+    }
+`
+
 
 export const Nav: FC = () => {
     
@@ -18,7 +31,7 @@ export const Nav: FC = () => {
     return (
         <Navigation dark={ isDark }>
             <Container>
-                <Box flex between adjust colCenter>
+                <NavPage>
                     <Title size={ 22 }>Where in the world?</Title>
                     <Box 
                         flex
@@ -29,7 +42,7 @@ export const Nav: FC = () => {
                         <FontAwesomeIcon icon={ isDark ? faMoonSolid : faMoon }/> 
                         <Text size={ 16 } margin={ "0 0 0 10px" }>Dark Mode</Text>
                     </Box>
-                </Box>
+                </NavPage>
             </Container>
         </Navigation>
     )

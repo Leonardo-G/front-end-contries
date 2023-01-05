@@ -18,6 +18,7 @@ export const Box = styled.div`
         shadow?: string;
         inline?: boolean;
         flexAuto?: boolean;
+        flexResponsive?: string;
     }) => flex ? "flex" : "normal" };
     flex: ${ ({ flexAuto }) => flexAuto ? 1 : "normal" };
     width: ${ ({ adjust }) => adjust ? "100%" : "auto"};
@@ -31,4 +32,8 @@ export const Box = styled.div`
     column-gap: ${ ({ colGap }) => colGap ? `${ colGap }px` : "0px" };
     border-radius: ${ ({ borderRadius }) => borderRadius ? borderRadius : "0px" };
     box-shadow: ${ ({ shadow }) => shadow ? shadow : "none" };
+
+    @media (max-width: 620px){
+        min-width: ${ ({ minWidth }) => minWidth ? "100%" : "auto"};
+    }
 `

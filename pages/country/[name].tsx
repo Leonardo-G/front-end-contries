@@ -10,10 +10,33 @@ import { Box } from '../../styled/flexbox';
 import { ContainerImage } from '../../components/image/ContainerImage';
 import { Text, Title } from '../../styled/text';
 import { returnBorders, returnLanguages, returnNativeName } from '../../utils/country';
+import styled from 'styled-components';
 
 interface Props {
     country: ICountryMedium;
 }
+
+const PageCountry = styled.div`
+    display: flex;
+    margin-top: 80px;
+    column-gap: 50px;
+    
+    @media (max-width: 920px){
+        flex-direction: column;
+        row-gap: 80px;
+    }
+`
+
+const CountryInfo = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    column-gap: 20px;
+
+    @media (max-width: 480px){
+        flex-direction: column;
+    }
+`
 
 const CountryPage: NextPage<Props> = ({ country }) => {
     
@@ -23,11 +46,7 @@ const CountryPage: NextPage<Props> = ({ country }) => {
         <LayoutPage title={` Country | ${country.name} `}>
             <Container>
                 <Button isDark={ isDark } text="Back" icon/>
-                <Box 
-                    flex
-                    colCenter
-                    colGap={ 150 }
-                    margin="80px 0 0 0"
+                <PageCountry 
                 >
                     <Box flexAuto>
                         <ContainerImage 
@@ -37,8 +56,8 @@ const CountryPage: NextPage<Props> = ({ country }) => {
                     </Box>
                     <Box flexAuto>
                         <Title size={ 28 }>{ country.name }</Title>
-                        <Box flex between margin='40px 0 0 0'>
-                            <Box>
+                        <CountryInfo >
+                            <Box flexAuto>
                                 <Text size={ 16 } weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                     Native Name: <span className='greyText'>
                                         { returnNativeName( country.nativeName ) }
@@ -57,7 +76,7 @@ const CountryPage: NextPage<Props> = ({ country }) => {
                                     Capital: <span className='greyText'>{ country.capital }</span>
                                 </Text>
                             </Box>
-                            <Box>
+                            <Box flexAuto>
                                 <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                     Top Level Domain: <span className='greyText'>{ country.tld }</span>
                                 </Text>
@@ -68,23 +87,25 @@ const CountryPage: NextPage<Props> = ({ country }) => {
                                     Languages: <span className='greyText'>{ returnLanguages( country.languages ) }</span>
                                 </Text>
                             </Box>
-                        </Box>
+                        </CountryInfo>
                         <Box>
                             <Text size={ 16 } margin='55px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                 Borders: 
-                                {
-                                    country.borders.map((c, idx) => (
-                                        <Button 
-                                            isDark={ isDark } 
-                                            key={ idx } 
-                                            text={ c }    
-                                        />
-                                    ))
-                                }
+                                <span className='responsive'>
+                                    {
+                                        country.borders.map((c, idx) => (
+                                            <Button 
+                                                isDark={ isDark } 
+                                                key={ idx } 
+                                                text={ c }    
+                                            />
+                                        ))
+                                    }
+                                </span>
                             </Text>
                         </Box>
                     </Box>
-                </Box>
+                </PageCountry>
             </Container>
         </LayoutPage>
     )
@@ -119,7 +140,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const country = results.map((c): ICountryMedium => ({
         name: c.name.common,
-        img: c.flags.png,
+        img: c.flags.svg,
         population: c.population.toLocaleString("es-AR"),
         region: c.region,
         capital: c.capital,
