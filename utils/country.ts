@@ -37,3 +37,19 @@ export const returnNativeName = ( nativeName: NativeName ) => {
 
     return nativeNameText
 }
+
+export const returnBorders = ( borders: string[] ): string => {
+    let textBorders = "";
+
+    borders.forEach( (b, idx) => {
+        if ( borders.length === idx + 1 ){
+
+            textBorders += `${b}`
+            return;
+        }
+
+        textBorders += `${b},`
+    })
+
+    return textBorders;
+}

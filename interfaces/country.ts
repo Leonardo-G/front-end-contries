@@ -12,6 +12,7 @@ export interface ICountryMedium extends ICountryShort {
     curriences: { [key: string]: Currency };
     languages: Languages;
     tld: string[];
+    borders: string[];
 }
 
 export interface ICountry {

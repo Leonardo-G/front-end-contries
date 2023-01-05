@@ -9,20 +9,20 @@ import { UIContext } from '../../context/UI/UIContext';
 import { Box } from '../../styled/flexbox';
 import { ContainerImage } from '../../components/image/ContainerImage';
 import { Text, Title } from '../../styled/text';
-import { returnLanguages, returnNativeName } from '../../utils/country';
+import { returnBorders, returnLanguages, returnNativeName } from '../../utils/country';
 
 interface Props {
     country: ICountryMedium;
 }
 
 const CountryPage: NextPage<Props> = ({ country }) => {
-    console.log(returnLanguages( country.languages ))
+    
     const { isDark } = useContext( UIContext );
 
     return (
         <LayoutPage title={` Country | ${country.name} `}>
             <Container>
-                <Button isDark={ isDark }/>
+                <Button isDark={ isDark } text="Back" icon/>
                 <Box 
                     flex
                     colCenter
@@ -69,6 +69,20 @@ const CountryPage: NextPage<Props> = ({ country }) => {
                                 </Text>
                             </Box>
                         </Box>
+                        <Box>
+                            <Text size={ 16 } margin='55px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                Borders: 
+                                {
+                                    country.borders.map((c, idx) => (
+                                        <Button 
+                                            isDark={ isDark } 
+                                            key={ idx } 
+                                            text={ c }    
+                                        />
+                                    ))
+                                }
+                            </Text>
+                        </Box>
                     </Box>
                 </Box>
             </Container>
@@ -97,6 +111,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const data = await fetch(`https://restcountries.com/v3.1/name/${name}`);
     const results: ICountry[] = await data.json();
+    
+    const borders = await fetch(`https://restcountries.com/v3.1/alpha?codes=${ returnBorders( results[0].borders! ) }`)
+    const bordersResult: ICountry[] = await borders.json();
+
+    const countryBorders = bordersResult.map( b => b.name.common );
 
     const country = results.map((c): ICountryMedium => ({
         name: c.name.common,
@@ -108,7 +127,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         tld: c.tld,
         curriences: c.currencies,
         languages: c.languages,
-        subregion: c.subregion
+        subregion: c.subregion,
+        borders: countryBorders
     }))
     
     return {
