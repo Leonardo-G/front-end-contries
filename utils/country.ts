@@ -1,6 +1,6 @@
 import { Languages, NativeName } from '../interfaces/country';
 
-export const returnLanguages = ( languages: Languages ): string => {
+export const returnLanguages = ( languages: any ): string => {
     let languagesText = "";
 
     const languagesArray = Object.keys( languages );
@@ -19,7 +19,7 @@ export const returnLanguages = ( languages: Languages ): string => {
     return languagesText
 }
 
-export const returnNativeName = ( nativeName: NativeName ) => {
+export const returnNativeName = ( nativeName: any ) => {
     let nativeNameText = "";
 
     const nativeNameArray = Object.keys( nativeName );
