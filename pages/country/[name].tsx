@@ -39,7 +39,6 @@ const CountryInfo = styled.div`
 `
 
 const CountryPage: NextPage<Props> = ({ country }) => {
-    
     const { isDark } = useContext( UIContext );
 
     return (
@@ -58,51 +57,69 @@ const CountryPage: NextPage<Props> = ({ country }) => {
                         <Title size={ 28 }>{ country.name }</Title>
                         <CountryInfo >
                             <Box flexAuto>
-                                <Text size={ 16 } weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                    Native Name: <span className='greyText'>
-                                        { returnNativeName( country.nativeName ) }
-                                    </span>
-                                </Text>
+                                {
+                                    country.nativeName &&
+                                    <Text size={ 16 } weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                        Native Name: <span className='greyText'>
+                                            { returnNativeName( country.nativeName ) }
+                                        </span>
+                                    </Text>
+                                }
                                 <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                     Populaton: <span className='greyText'>{ country.population }</span>
                                 </Text>
                                 <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                     Region: <span className='greyText'>{ country.region }</span>
                                 </Text>
-                                <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                    Sub Region: <span className='greyText'>{ country.subregion }</span>
-                                </Text>
-                                <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                    Capital: <span className='greyText'>{ country.capital }</span>
-                                </Text>
+                                {
+                                    country.subregion &&
+                                    <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                        Sub Region: <span className='greyText'>{ country.subregion }</span>
+                                    </Text>
+                                }
+                                {
+                                    country.capital &&
+                                    <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                        Capital: <span className='greyText'>{ country.capital }</span>
+                                    </Text>
+                                }
                             </Box>
                             <Box flexAuto>
                                 <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
                                     Top Level Domain: <span className='greyText'>{ country.tld }</span>
                                 </Text>
-                                <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                    Currencies: <span className='greyText'>{ country.curriences[Object.keys(country.curriences)[0]].name }</span>
-                                </Text>
-                                <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                    Languages: <span className='greyText'>{ returnLanguages( country.languages ) }</span>
-                                </Text>
+                                {
+                                    country.curriences &&
+                                    <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                        Currencies: <span className='greyText'>{ country.curriences[Object.keys(country.curriences)[0]].name }</span>
+                                    </Text>
+                                }
+                                {
+                                    country.languages &&
+                                    <Text size={ 16 } margin='15px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                        Languages: <span className='greyText'>{ returnLanguages( country.languages ) }</span>
+                                    </Text>
+                                }
                             </Box>
                         </CountryInfo>
                         <Box>
-                            <Text size={ 16 } margin='55px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
-                                Borders: 
-                                <span className='responsive'>
-                                    {
-                                        country.borders.map((c, idx) => (
-                                            <Button 
-                                                isDark={ isDark } 
-                                                key={ idx } 
-                                                text={ c }    
-                                            />
-                                        ))
-                                    }
-                                </span>
-                            </Text>
+                            {
+                                country.borders &&
+                                <Text size={ 16 } margin='55px 0 0 0' weight={ 600 } color={ isDark ? "#fff" : "hsl(209, 23%, 22%)" }>
+                                    Borders: 
+                                    <span className='responsive'>
+                                        {
+                                            country.borders.map((c, idx) => (
+                                                <Button 
+                                                    isDark={ isDark } 
+                                                    key={ idx } 
+                                                    text={ c }    
+                                                />
+                                            ))
+                                        }
+                                    </span>
+                                </Text>
+                            }
                         </Box>
                     </Box>
                 </PageCountry>
@@ -133,25 +150,30 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const data = await fetch(`https://restcountries.com/v3.1/name/${name}`);
     const results: ICountry[] = await data.json();
     
-    const borders = await fetch(`https://restcountries.com/v3.1/alpha?codes=${ returnBorders( results[0].borders! ) }`)
-    const bordersResult: ICountry[] = await borders.json();
+    let countryBorders = [""];
 
-    const countryBorders = bordersResult.map( b => b.name.common );
+    if ( results[0].borders ){
+        const borders = await fetch(`https://restcountries.com/v3.1/alpha?codes=${ returnBorders( results[0].borders! ) }`)
+        const bordersResult: ICountry[] = await borders.json();
+    
+        countryBorders = bordersResult.map( b => b.name.common );
+    }
 
     const country = results.map((c): ICountryMedium => ({
         name: c.name.common,
         img: c.flags.svg,
         population: c.population.toLocaleString("es-AR"),
         region: c.region,
-        capital: c.capital,
-        nativeName: c.name.nativeName,
+        capital: c.capital || null,
+        nativeName: c.name.nativeName || null,
         tld: c.tld,
-        curriences: c.currencies,
-        languages: c.languages,
-        subregion: c.subregion,
+        curriences: c.currencies || null,
+        languages: c.languages || null,
+        subregion: c.subregion || null,
         borders: countryBorders
     }))
     
+    console.log(country[0].languages)
     return {
         props: {
             country: JSON.parse( JSON.stringify(country[0]) )

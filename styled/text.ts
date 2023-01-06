@@ -16,6 +16,8 @@ export const Text = styled.p`
         color: hsl(0, 0%, 52%);
     }
 
+    .responsive{}
+
     @media (max-width: 480px){
         .responsive{
             display: block;

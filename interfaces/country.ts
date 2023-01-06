@@ -8,7 +8,7 @@ export interface ICountryShort {
 
 export interface ICountryMedium extends ICountryShort {
     nativeName: NativeName;
-    subregion: string;
+    subregion: string | null;
     curriences: { [key: string]: Currency };
     languages: Languages;
     tld: string[];
