@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Front End Mentor - Countries
 
-## Getting Started
+Desafio de interaccion en los comentario de Front End Mentor realizado con Next.js/React.js/TypeScript utilizando el método Static Site Generation para cada una de los paises. El [demo del proyecto](https://front-end-contries.vercel.app/) está publicada en vercel.
+Se utilizó la API de [REST COUNTRIES](https://restcountries.com/)
 
-First, run the development server:
+### Instalación
 
-```bash
-npm run dev
-# or
-yarn dev
+Una vez clonado el repositorio o descargado el los archivos del repositorio, para poder iniciar la aplicación en tu entorno local, hay que instalar las dependencias necesarias con:
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Una vez instalado, podemos correr la aplicación en un servidor local:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+npm start
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Herramientas utilizadas para crear este proyecto.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+React: El framework mas popular.
+next: Marco web de desarrollo de React: V13.1.0.
+styled-components: Codigo CSS en Javascript: V5.3.6.
